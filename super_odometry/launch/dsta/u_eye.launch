@@ -1,0 +1,32 @@
+<launch>
+
+    <!--     <include file="$(find super_odometry)/launch/imu_intergration.launch"/> -->
+    <arg name="config_path" default="$(find super_odometry)/config/u_eye/velodyne16_cmu_drone_latest.yaml"/>
+    <param name="scan_line" type="int" value="16" />
+
+   <param name="vision_laser_time_offset" type="double" value="0.00"/>
+    <param name="mapping_line_resolution" type="double" value="0.3"/>
+    <param name="mapping_plane_resolution" type="double" value="0.4"/>
+    <param name="vision_laser_time_offset" type="double" value="0.00"/>
+
+    <node pkg="super_odometry" type="featureExtraction_node" name="featureExtraction_node" output="screen">
+            <param name="mapping_skip_frame" type="int" value="2" />
+            <param name="scan_line" type="int" value="16" />
+            <param name="config_file" type="string" value="$(arg config_path)"/>
+    </node> 
+
+    <node pkg="super_odometry" type="laserMapping_node" name="laserMapping_node" output="screen">
+      <remap from="laser_odom_to_init" to="/ins_estimator/lidar/odometry" />
+      <param name="debug_view" type="bool" value="false"/>
+      <param name="max_iterations" type="int" value="4"/>
+      <param name="mapping_line_resolution" type="double" value="0.2"/>
+      <param name="mapping_plane_resolution" type="double" value="0.4"/>
+    </node>
+
+
+<!--     <arg name="rviz" default="true" /> -->
+<!--     <group if="$(arg rviz)"> -->
+<!--         <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find super_odometry)/rviz_cfg/super_odometry.rviz" /> -->
+<!--     </group> -->
+
+</launch>

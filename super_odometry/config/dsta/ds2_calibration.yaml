@@ -1,0 +1,60 @@
+%YAML:1.0
+#Rotation from laser frame to imu frame, imu^R_laser
+extrinsicRotation_imu_laser: !!opencv-matrix
+  rows: 3
+  cols: 3
+  dt: d
+  data:  [0.998987670847842, 0, 0.0325, 0, 1.0, 0, -0.0325, 0, 0.998987670847842]
+
+#Translation from laser frame to imu frame, imu^T_laser
+extrinsicTranslation_imu_laser: !!opencv-matrix
+  rows: 3
+  cols: 1
+  dt: d
+  data: [-0.02208628,-0.02142526,0.02434912]
+
+
+#Rotation from camera frame to imu frame, imu^R_cam
+extrinsicRotation_imu_camera: !!opencv-matrix
+  rows: 3
+  cols: 3
+  dt: d
+  data: [-0.02084836,  0.00492733,  0.99977051,
+         -0.9992563,  -0.03254675, -0.02067723,
+         0.03243739, -0.99945807,  0.00560221]
+#Translation from camera frame to imu frame, imu^T_cam
+extrinsicTranslation_imu_camera: !!opencv-matrix
+  rows: 3
+  cols: 1
+  dt: d
+  data: [0.18728868,-0.0241465, -0.06434955]
+
+
+#Rotation from laser frame to camera frame, camera^R_laser
+extrinsicRotation_camera_laser: !!opencv-matrix
+  rows: 3
+  cols: 3
+  dt: d
+  data: [ -0.016325,  -0.999063,  0.040094,
+          0.043872,  -0.040776,  -0.998205,
+          0.998904,  -0.014537,  0.044496 ]
+#Translation from laser frame to camera frame, camera^T_laser
+extrinsicTranslation_camera_laser: !!opencv-matrix
+  rows: 3
+  cols: 1
+  dt: d
+  data: [ -0.000582, -0.130524, -0.221890]
+
+# only calibrate the ds2 up realsense and neet to cablirate the ds down realsense 
+up_realsense_roll: 0.106278
+up_realsense_pitch: 1.68719
+up_realsense_yaw: -1.66389
+up_realsense_x: 0.239178
+up_realsense_y: -0.0191013
+up_realsense_z: -0.110986
+down_realsense_roll: 1.75701 
+down_realsense_pitch: 2.40931
+down_realsense_yaw: -0.812017
+down_realsense_x: 0.247631
+down_realsense_y: -0.00675159
+down_realsense_z: -0.247472

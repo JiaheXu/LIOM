@@ -1,0 +1,29 @@
+<launch>
+
+  <arg name="calibration_path" default="$(find super_odometry)/config/sp1_calibration.yaml"/>
+    <rosparam command="load" file="$(find super_odometry)/config/spot.yaml"/>
+
+  <node pkg="super_odometry" type="featureExtraction_node" name="featureExtraction_node" output="screen">
+     <param name="config_file" type="string" value="$(arg calibration_path)"/>
+  </node> 
+
+  
+  <!-- <node pkg="super_odometry" type="scanRegistration_node" name="scanRegistration_node" output="screen">
+    <rosparam command="load" file="$(find super_odometry)/config/ugv.yaml"/>
+    <param name="config_file" type="string" value="$(arg calibration_path)"/>
+  </node> -->
+
+
+ <node pkg="super_odometry" type="laserMapping_node" name="laserMapping_node" output="screen">
+    <param name="config_file" type="string" value="$(arg calibration_path)"/>
+  </node>
+
+  <node pkg="super_odometry" type="imuPreintegration_node" name="imuPreintegration_node" output="screen">
+    <param name="config_file" type="string" value="$(arg calibration_path)"/>
+  </node>
+
+  <node pkg="tf" type="static_transform_publisher" name="sensorInitTransPublisher" args="0 0 0 1.5707963 0 1.5707963 /sensor_init /sensor_init_rot 1000"/>
+
+  <node pkg="tf" type="static_transform_publisher" name="veloTransPublisher" args="0 0 0 0 0 0 /sensor /velodyne 1000"/>
+
+</launch>

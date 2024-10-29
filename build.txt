@@ -1,0 +1,35 @@
+ROS_FULL
+
+    sudo apt install ros-humble-desktop (https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
+
+apt install -y libceres-dev ros-humble-velodyne-pointcloud
+
+Below installations can be done anywhere - I did it in my home folder 
+SOPHUS
+
+    git clone http://github.com/strasdat/Sophus.git \
+    && cd Sophus && git checkout 97e7161 \
+    && mkdir build && cd build && cmake .. -DBUILD_TESTS=OFF \
+    && make -j8 && sudo make install
+
+GTSAM (develop branch works for ubunutu 22)
+
+    git clone https://github.com/borglab/gtsam.git && \
+    cd gtsam && git checkout 4abef92\
+    mkdir build && \
+    cd build && \
+    cmake  \
+          -DGTSAM_USE_SYSTEM_EIGEN=ON \
+          -DGTSAM_BUILD_WITH_MARCH_NATIVE=OFF \
+           .. && \
+    make -j6 && \
+    make install
+
+RUNTIME INSTRUCTIONS
+
+Instructions - In separate terminals
+- ros2 bag play ros2_mmpug_data.db3 --clock  --topic /cmu_sp1/velodyne_packets /cmu_sp1/imu/data --remap /cmu_sp1/velodyne_packets:=/velodyne_packets  /cmu_sp1/imu/data:=/imu/data
+- ros2 launch velodyne_pointcloud velodyne_transform_node-VLP16-launch.py
+- ros2 launch super_odometry ugv_offline.launch
+- rviz2 (config is located in the root directory of the repo - ros2.rviz)
+

@@ -1,0 +1,31 @@
+<launch>
+
+  <arg name="computer" default="$(arg computer)" />
+  <arg name="calibration_path" default="$(find super_odometry)/config/$(arg computer)_calibration.yaml"/>
+  <rosparam command="load" file="$(find super_odometry)/config/ugv.yaml"/>
+  
+  <node pkg="super_odometry" type="featureExtraction_node" name="featureExtraction_node" output="screen">
+    <param name="blindFront"          type="double" value="$(env subt_$(arg computer)_sr_blind_front)" />
+    <param name="blindBack"           type="double" value="$(env subt_$(arg computer)_sr_blind_back)" />
+    <param name="blindLeft"           type="double" value="$(env subt_$(arg computer)_sr_blind_left)" />
+    <param name="blindRight"          type="double" value="$(env subt_$(arg computer)_sr_blind_right)" />
+  </node> 
+  
+  <!-- <node pkg="super_odometry" type="scanRegistration_node" name="scanRegistration_node" output="screen">
+    <rosparam command="load" file="$(find super_odometry)/config/ugv.yaml"/>
+    <param name="config_file" type="string" value="$(arg calibration_path)"/>
+  </node> -->
+
+  <node launch-prefix="nice -n -5" pkg="super_odometry" type="laserMapping_node" name="laserMapping_node" output="screen">
+    <param name="config_file" type="string" value="$(arg calibration_path)"/>
+  </node>
+
+  <node  launch-prefix="nice -n -5" pkg="super_odometry" type="imuPreintegration_node" name="imuPreintegration_node" output="screen">
+    <param name="config_file" type="string" value="$(arg calibration_path)"/>
+  </node>
+
+  <node pkg="tf" type="static_transform_publisher" name="sensorInitTransPublisher" args="0 0 0 1.5707963 0 1.5707963 /sensor_init /sensor_init_rot 1000"/>
+
+  <node pkg="tf" type="static_transform_publisher" name="veloTransPublisher" args="0 0 0 0 0 0 /sensor /velodyne 1000"/>
+
+</launch>

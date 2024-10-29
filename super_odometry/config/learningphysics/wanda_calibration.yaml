@@ -1,0 +1,26 @@
+%YAML:1.2
+
+#Rotation from laser frame to imu frame, imu^R_laser
+extrinsicRotation_imu_laser: !!opencv-matrix
+  rows: 3
+  cols: 3
+  dt: d
+  #data: [-0.9981648, -0.0605146, 0.0022406, 0.0604843, -0.9981000, -0.0117519, 0.0029475, -0.0115949, 0.99983017]
+  data: [-0.9991984,  0.0399627, -0.0023589, -0.0399987, -0.9990385,  0.0179513, -0.0016392,  0.0180313,  0.9998361]
+  # data: [0.8342528,  0.5513639, -0.0044784, -0.5513813, 0.8342383, -0.0050135, 0.0009718, 0.0066518, 0.9999774]
+#Translation from laser frame to imu frame, imu^T_laser
+extrinsicTranslation_imu_laser: !!opencv-matrix
+  rows: 3
+  cols: 1
+  dt: d
+  # data: [-0.0351814, -0.0147287, 0.06434955]
+  # data: [-0.106, 0.024, 0.478]
+  data: [-0.14, 0.024, -0.372]
+
+imu_laser_rotation_offset: !!opencv-matrix
+  rows: 3
+  cols: 1
+  dt: d
+  data: [0.0, 0.0, 0.0]
+
+yaw_ratio: 0.0

@@ -1,0 +1,34 @@
+<launch>
+
+  <arg name="calibration_path" default="$(find super_odometry)/config/$(env ROBOT)_calibration.yaml"/>
+  <rosparam command="load" file="$(find super_odometry)/config/canary.yaml"/>
+
+  <node launch-prefix="nice -n -5"  pkg="super_odometry" type="featureExtraction_node" name="featureExtraction_node" output="screen">
+    <param name="config_file" type="string" value="$(arg calibration_path)"/>
+  </node>
+
+  <node launch-prefix="nice -n -5" pkg="super_odometry" type="scanRegistration_node" name="scanRegistration_node" output="screen" clear_params="true">
+    <param name="config_file" type="string" value="$(find super_odometry)/config/ouster_calibration.yaml"/>
+    <remap from="superodom/feature_info" to="ouster/feature_info"/>
+    <remap from="velodyne_cloud_2" to="ouster_cloud_2"/>
+  </node>
+
+  <node launch-prefix="nice -n -5" pkg="super_odometry" type="ousterTransform" name="ousterTransform" output="screen">
+  </node>
+
+  <node launch-prefix="nice -n -5" pkg="super_odometry" type="laserMapping_node" name="laserMapping_node" output="screen">
+    <param name="config_file" type="string" value="$(arg calibration_path)"/>
+  </node>
+
+  <node launch-prefix="nice -n -5" pkg="super_odometry" type="imuPreintegration_node" name="imuPreintegration_node" output="screen">
+    <param name="config_file" type="string" value="$(arg calibration_path)"/>
+  </node>
+
+  <node pkg="tf" type="static_transform_publisher" name="sensorInitTransPublisher" args="0 0 0 1.5707963 0 1.5707963 /sensor_init /sensor_init_rot 1000"/>
+
+  <node pkg="tf" type="static_transform_publisher" name="veloTransPublisher" args="0 0 0 0 0 0 /sensor /velodyne 100"/>
+
+  <node pkg="tf" type="static_transform_publisher" name="vlp_to_ouster"
+      args="-0.062780 0.004754 -0.070985 2.500081 1.559406 -0.654966 /sensor /os_sensor 100"/>
+
+</launch>

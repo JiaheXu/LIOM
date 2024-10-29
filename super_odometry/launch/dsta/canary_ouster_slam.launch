@@ -1,0 +1,53 @@
+<launch>
+
+  <arg name="calibration_path" default="$(find super_odometry)/config/canary1_calibration.yaml"/>
+  <rosparam command="load" file="$(find super_odometry)/config/canary.yaml"/>
+  
+  <node pkg="super_odometry" type="featureExtraction_node" name="featureExtraction_node" output="screen">
+    <param name="laser_topic" type="string" value="/velodyne_points"/>
+    <param name="scan_line" value="16"/>
+    <param name="mapping_skip_frame" value="2"/>
+    <param name="config_file" type="string" value="$(arg calibration_path)"/>
+  </node>
+
+
+  <node pkg="super_odometry" type="scanRegistration_node" name="scanRegistration_node" output="screen" clear_params="true">
+    <param name="config_file" type="string" value="$(find super_odometry)/config/ouster_calibration.yaml"/>
+    <param name="downsample_rate" value="8"/>
+    <param name="skip_point" value="2"/>
+    <param name="sensor" value="ouster"/>
+    <param name="laser_topic" type="string" value="/os_cloud_node/points"/>
+    <param name="imu_topic" type="string" value="/imu/data"/>
+    <param name="odom_topic" type="string" value="/integrated_to_init_NOT"/>
+    <param name="mapping_skip_frame" value="2"/>
+    <param name="scan_line" value="128"/>
+    <param name="blindUp" value="0.4"/>
+    <param name="blindDown" value="-0.4"/>
+    <param name="blindBack" value="-1.5"/>
+    <param name="min_range" value="0.5"/>
+    <param name="max_range" value="130"/>
+    <param name="provide_point_time" value="1"/>
+  </node>
+
+  <!-- <node pkg="super_odometry" type="ousterTransform" name="ousterTransform" output="screen">
+    <param name="skip_point_count" value="3" />
+  </node> -->
+
+
+  <node pkg="super_odometry" type="laserMapping_node" name="laserMapping_node" output="screen">
+    <param name="config_file" type="string" value="$(find super_odometry)/config/ouster_calibration.yaml"/>
+
+  </node>
+
+  <node  pkg="super_odometry" type="imuPreintegration_node" name="imuPreintegration_node" output="screen">
+    <param name="config_file" type="string" value="$(arg calibration_path)"/>
+  </node>
+
+  <node pkg="tf" type="static_transform_publisher" name="sensorInitTransPublisher" args="0 0 0 1.5707963 0 1.5707963 /sensor_init /sensor_init_rot 1000"/>
+
+  <node pkg="tf" type="static_transform_publisher" name="veloTransPublisher" args="0 0 0 0 0 0 /sensor /velodyne 100"/>
+
+  <node pkg="tf" type="static_transform_publisher" name="vlp_to_ouster"
+      args="-0.062780 0.004754 -0.070985 2.500081 1.559406 -0.654966 /sensor /os_sensor 100"/>
+
+</launch>

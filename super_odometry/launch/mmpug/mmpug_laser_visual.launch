@@ -1,0 +1,50 @@
+
+<launch>
+
+  <arg name="launch_spot_vio" default="false"/>
+  <arg name="launch_rc_vio"   default="false"/>
+  <arg name="launch_pt003_vio"   default="false"/>
+  <arg name="system_id" default="cmu_rc1"/>
+
+<!-- 
+  <group ns="cmu_rc1">
+    <arg name="tf_prefix"     default="cmu_rc1_" /> -->
+  <param name="world_frame" type="string" value="$(arg system_id)_sensor_init"/>
+  <param name="world_frame_rot" type="string" value="$(arg system_id)_sensor_init_rot"/>
+  <param name="sensor_frame" type="string" value="$(arg system_id)_sensor"/>
+  <param name="sensor_frame_rot" type="string" value="$(arg system_id)_sensor_rot"/>
+
+    <!-- <param name="use_sim_time"  value="true" /> -->
+  <arg name="calibration_path" default="$(find super_odometry)/config/mmpug/$(arg system_id)_calibration.yaml"/>
+  <rosparam command="load" file="$(find super_odometry)/config/ugv.yaml"/>
+
+   <node launch-prefix="nice -n -5" pkg="super_odometry" type="featureExtraction_node" name="featureExtraction_node" output="screen">
+   <param name="config_file" type="string" value="$(arg calibration_path)"/>
+  </node>
+
+   <node launch-prefix="nice -n -5" pkg="super_odometry" type="laserMapping_node" name="laserMapping_node" output="screen">
+    <param name="config_file" type="string" value="$(arg calibration_path)"/>
+  </node>
+
+  <node  launch-prefix="nice -n -5" pkg="super_odometry" type="imuPreintegration_node" name="imuPreintegration_node" output="screen">
+    <param name="config_file" type="string" value="$(arg calibration_path)"/>
+  </node>
+
+  <node pkg="tf" type="static_transform_publisher" name="sensorInitTransPublisher" args="0 0 0 1.5707963 0 1.5707963 /$(arg system_id)_sensor_init /$(arg system_id)_sensor_init_rot 1000"/>
+
+  <node pkg="tf" type="static_transform_publisher" name="veloTransPublisher" args="0 0 0 0 0 0 /sensor /velodyne 1000"/>
+
+  <node pkg="tf" type="static_transform_publisher" name="map_to_sensor_init" args="0 0 0 0 0 0 /$(arg system_id)_map /$(arg system_id)_sensor_init 1000"/>
+
+  <include file="$(find vins_estimator)/launch/cam1_half.launch" if="$(eval launch_rc_vio or launch_spot_vio)">
+    <arg name="system_id" value="$(arg system_id)" />
+  </include>
+  <!-- <include file="$(find vins_estimator)/launch/$(arg system_id)_cam1_full.launch" if="$(arg launch_spot_vio)">
+    <arg name="system_id" value="$(arg system_id)" />
+  </include> -->
+
+  <!-- <node pkg="topic_tools" type="relay" name="relay1" args="/cmu_rc1/superodom/integrated_to_init /cmu_rc1/integrated_to_init"/>
+  <node pkg="topic_tools" type="relay" name="relay2" args="/cmu_rc1/superodom/aft_mapped_to_init /cmu_rc1/aft_mapped_to_init"/>
+  <node pkg="topic_tools" type="relay" name="relay3" args="/cmu_rc1/superodom/velodyne_cloud_registered /cmu_rc1/velodyne_cloud_registered"/> -->
+  <!-- </group> -->
+</launch>

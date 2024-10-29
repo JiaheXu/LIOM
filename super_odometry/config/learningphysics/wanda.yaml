@@ -1,0 +1,62 @@
+PROJECT_NAME: ""
+fixed_frame_id: "sensor_init"   # Header frame id for all odometry messages published by odometry stuff
+odometry_frame_id: "wanda/base_link"   # Child frame id for all odometry messages published by odometry stuff, and
+                                                  # common frame id that point clouds get transformed to
+depthup_topic: ""
+depthdown_topic: ""
+imu_topic: "/wanda/imu/data"
+odom_topic:  ""
+laser_topic: "/wanda/lidar_points"
+imu_input_topic: "/wanda/imu/data"
+imu_output_topic: "/wanda/imu_aligned/data"
+
+imu_update_rate: 125
+
+
+laserMapping_node:
+  debug_view: false
+  enable_ouster_data: false
+  max_iterations: 5
+  mapping_line_resolution: 0.05
+  mapping_plane_resolution: 0.1
+  publish_only_feature_points: false
+  use_imu_roll_pitch: false
+  start_from_previous_map: false
+  velocity_failure_threshold: 50.0
+  max_surface_features: 2000
+  provide_imu_laser_extrinsic: 1
+  auto_voxel_size: true
+  forget_far_chunks: true
+  visual_confidence_factor: 1.0
+  pos_degeneracy_threshold: 1.0
+  ori_degeneracy_threshold: 1.0
+
+imuPreintegration_node:
+  lidar_correction_noise: 0.01
+  smooth_factor: 0.9
+  provide_imu_laser_extrinsic: 1 
+  acc_n: 0.0131549          # accelerometer measurement noise standard deviation. #0.2
+  gyr_n: 0.0027860         # gyroscope measurement noise standard deviation.     #0.05
+  acc_w: 1.25e-05          # accelerometer bias random work noise standard deviation.  #0.02
+  gyr_w: 3.87851e-05       # gyroscope bias random work noise standard deviation.     #4.0e-5
+  g_norm: 9.80511    # 0 means you need to provide both imu-camera and laser-camera extrinsic
+  use_imu_roll_pitch: false
+
+featureExtraction_node:
+  scan_line: 64
+  sensor: "ouster"
+  mapping_skip_frame: 1
+  blindFront: 1
+  blindBack: -3
+  blindLeft: 1.5
+  blindRight: -1.5
+  use_imu_roll_pitch: false
+  use_dynamic_mask: true
+  use_up_realsense_points: false
+  use_down_realsense_points: false
+  min_range: 1    #<!-- remove too closed points -->
+  max_range: 150
+  skip_realsense_points: 100
+  provide_imu_laser_extrinsic: 1
+  provide_point_time: 0
+ 

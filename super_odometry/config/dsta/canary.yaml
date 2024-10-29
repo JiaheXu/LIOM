@@ -1,0 +1,76 @@
+project_name: "superodom"
+laserMapping_node:
+  debug_view: false
+  max_iterations: 4
+  mapping_line_resolution: 0.2
+  mapping_plane_resolution: 0.4
+  publish_only_feature_points: false
+  use_imu_roll_pitch: false
+  start_from_previous_map: false
+  velocity_failure_threshold: 30.0
+  max_surface_features: 500
+  provide_imu_laser_extrinsic: 1
+  auto_voxel_size: true
+  forget_far_chunks: false
+
+imuPreintegration_node:
+  imu_topic: "/imu/data"
+  image_topic: "/camera/image_raw"
+  laser_topic: "/velodyne_points"
+  odom_topic:  "/integrated_to_init"
+  laser_type: 16
+  lidar_correction_noise: 0.01
+  sensor: "velodyne"
+  provide_point_time: 0
+  smooth_factor: 0.0
+  provide_imu_laser_extrinsic: 1 
+  acc_n: 3.9939570888238808e-03          # accelerometer measurement noise standard deviation. #0.2
+  gyr_n: 1.5636343949698187e-03         # gyroscope measurement noise standard deviation.     #0.05
+  acc_w: 6.4356659353532566e-05          # accelerometer bias random work noise standard deviation.  #0.02
+  gyr_w: 3.5640318696367613e-05       # gyroscope bias random work noise standard deviation.     #4.0e-5
+  g_norm: 9.80511    # 0 means you need to provide both imu-camera and laser-camera extrinsic
+  use_imu_roll_pitch: true
+
+featureExtraction_node:
+  scan_line: 16
+  mapping_skip_frame: 2
+  blindFront: 0.4
+  blindBack: -0.7
+  blindLeft: 0.4
+  blindRight: -0.4
+  use_imu_roll_pitch: true
+  min_range: 0.5    #<!-- remove too closed points -->
+  max_range: 130  
+  skip_realsense_points: 50
+  provide_imu_laser_extrinsic: 1 
+  use_imu_roll_pitch: true
+  use_up_realsense_points: true
+  use_down_realsense_points: true
+  imu_topic: "/imu/data"
+  laser_topic: "/velodyne_points"
+  odom_topic:  "/integrated_to_init_NOT"
+  depthup_topic: "/rs_up/depth/cloud_filtered"
+  depthdown_topic: "/rs_down/depth/cloud_filtered"
+
+scanRegistration_node:
+  downsample_rate: 4
+  skip_point: 3
+  sensor: "ouster"
+  laser_topic: "/os_cloud_node/points"
+  imu_topic: "/imu/data"
+  odom_topic: "/integrated_to_init_NOT"
+  mapping_skip_frame: 5
+  scan_line: 128
+  blindUp: 0.4
+  blindDown: -0.4
+  blindFront: 0.4
+  blindBack: -0.7
+  blindLeft: 0.4
+  blindRight: -0.4
+  min_range: 0.5
+  max_range: 130
+  provide_imu_laser_extrinsic: 1
+
+ousterTransform:
+  skip_point_count: 1
+  

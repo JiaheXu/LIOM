@@ -1,0 +1,80 @@
+%YAML:1.0
+#Rotation from laser frame to imu frame, imu^R_laser
+# extrinsicRotation_imu_laser: !!opencv-matrix
+#   rows: 3
+#   cols: 3
+#   dt: d
+#   data: [9.99999074e-01,-1.99693285e-04,1.34635081e-03,
+#          1.96984539e-04, 9.99997957e-01, 2.01174991e-03,
+#         -1.34674980e-03,-2.01148284e-03,9.99997070e-01]
+# #Translation from laser frame to imu frame, imu^T_laser
+# extrinsicTranslation_imu_laser: !!opencv-matrix
+#   rows: 3
+#   cols: 1
+#   dt: d
+#   data: [-0.02208628,-0.02142526,0.02434912]
+#Rotation from laser frame to imu frame, imu^R_laser
+extrinsicRotation_imu_laser: !!opencv-matrix
+  rows: 3
+  cols: 3
+  dt: d
+  # data: [1.0,  0.0, 0.0, 0, 1, -0.012, 0, 0.012, 1]
+  # data: [ 1.00000000000000,   0, 0, 0, 0.999593143270696, 0.02, 0, -0.02, 0.999593143270696]
+  data: [1.0,  0.0, 0.0, 0, 1.0, 0, 0, 0, 1.0]
+  # data: [1.0, 0, 0, 0, -0.999999941124096, 0.000343149829573, 0, -0.000343149829573, -0.999999941124096]
+#
+# data: [-0.999896749472358, 0, -0.014369773645112, 
+          # 0.0, 1.0, 0.0,
+          # -0.014369773645112, 0, -0.999896749472358]
+#Translation from laser frame to imu frame, imu^T_laser
+extrinsicTranslation_imu_laser: !!opencv-matrix
+  rows: 3
+  cols: 1
+  dt: d
+  # data: [-0.0351814, -0.0147287, 0.06434955]
+  data: [0.0, 0.0, 0.0]
+
+#Rotation from camera frame to imu frame, imu^R_cam
+extrinsicRotation_imu_camera: !!opencv-matrix
+  rows: 3
+  cols: 3
+  dt: d
+  data: [-0.02084836,  0.00492733,  0.99977051,
+         -0.9992563,  -0.03254675, -0.02067723,
+         0.03243739, -0.99945807,  0.00560221]
+#Translation from camera frame to imu frame, imu^T_cam
+extrinsicTranslation_imu_camera: !!opencv-matrix
+  rows: 3
+  cols: 1
+  dt: d
+  data: [0.18728868,-0.0241465, -0.06434955]
+
+
+#Rotation from laser frame to camera frame, camera^R_laser
+extrinsicRotation_camera_laser: !!opencv-matrix
+  rows: 3
+  cols: 3
+  dt: d
+  data: [ -0.016325,  -0.999063,  0.040094,
+          0.043872,  -0.040776,  -0.998205,
+          0.998904,  -0.014537,  0.044496 ]
+#Translation from laser frame to camera frame, camera^T_laser
+extrinsicTranslation_camera_laser: !!opencv-matrix
+  rows: 3
+  cols: 1
+  dt: d
+  data: [ -0.000582, -0.130524, -0.221890]
+
+# This is ds4 parameter and need to change
+up_realsense_roll: 0
+up_realsense_pitch: 0
+up_realsense_yaw: 0
+up_realsense_x: 0
+up_realsense_y: 0
+up_realsense_z: 0
+down_realsense_roll: 0
+down_realsense_pitch: 0
+down_realsense_yaw: 0
+down_realsense_x: 0
+down_realsense_y: 0
+down_realsense_z: 0

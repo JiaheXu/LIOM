@@ -1,0 +1,20 @@
+<launch>
+    <param name="use_sim_time"  value="true" />
+
+    <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="sensorInitTransPublisher" args="0 0 0 1.5707963 0 1.5707963 sensor_init sensor_init_rot"/> -->
+    <!-- <remap from="/velodyne_points" to="/uav1/velodyne_points"/> -->
+  
+    <!-- <include file="$(find super_odometry)/launch/run_drone_state_estimation.launch" /> -->
+  
+    <include file="$(find velodyne_launch)/launch/velodyne.launch" />
+
+    <include file="$(find super_odometry)/launch/ugv_super_odom.launch"/>
+
+    <include file="$(find online_pose_graph)/online_pose_graph_headless.launch" />
+    <!-- <include file="$(find point_cloud_receiver)/point_cloud_receiver.launch"/> -->
+    <include file="$(find point_cloud_receiver)/point_cloud_receiver.launch">
+      <arg name="prefix" value="super"/>
+    </include>
+
+    <!-- <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find super_odometry)/config/debug.rviz"/> -->
+</launch>

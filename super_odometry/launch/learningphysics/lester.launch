@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<launch>
+  <param name="world_frame" type="string" value="sensor_init"/>
+  <param name="world_frame_rot" type="string" value="sensor_init_rot"/>
+  <param name="sensor_frame" type="string" value="vehicle"/>
+  <param name="sensor_frame_rot" type="string" value="vehicle_rot"/>
+
+  <!--
+  
+  <node pkg="tf" type="static_transform_publisher" name="sensor_init_to_sensor_init_rot" args="0 0 0 0 0 3.14159 sensor_init sensor_init_rot 100" />
+
+  <node pkg="tf" type="static_transform_publisher" name="gps_to_imu" args="0 0 0 0 0 0 vehicle novatel/imu_frame 100" />
+  -->
+  <arg name="calibration_path" default="$(find super_odometry)/config/mmpug/yamaha_calibration.yaml"/>
+  <rosparam command="load" file="$(find super_odometry)/config/learningphysics/lester.yaml"/>
+
+  <node launch-prefix="nice -n -5" pkg="super_odometry" type="featureExtraction_node" name="featureExtraction_node" output="screen">
+   <param name="config_file" type="string" value="$(arg calibration_path)"/>
+  </node>
+
+   <node launch-prefix="nice -n -5" pkg="super_odometry" type="laserMapping_node" name="laserMapping_node" output="log">
+    <param name="config_file" type="string" value="$(arg calibration_path)"/>
+  </node>
+
+  <node  launch-prefix="nice -n -5" pkg="super_odometry" type="imuPreintegration_node" name="imuPreintegration_node" output="log">
+    <param name="config_file" type="string" value="$(arg calibration_path)"/>
+  </node> 
+
+    <node launch-prefix="nice -n -5" pkg="super_odometry" type="imu_alignment_node" name="imu_alignment_node" output="screen" required="true">
+  </node>
+   <!--
+  <node pkg="launchers" type="map_to_sensor_init_publisher.py" name="map_to_sensor_init" output="screen">
+    <param name="gps_topic" value="/odometry/filtered_odom"/>
+    <param name="super_odometry_topic" value="/integrated_to_init"/>
+  </node>
+  -->
+
+</launch>

@@ -1,0 +1,1 @@
+docker build -t multi_robot_slam .

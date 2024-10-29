@@ -1,0 +1,52 @@
+%YAML 1.2
+---
+session_name: launch_superodometry
+
+suppress_history: false
+
+before_script: docker start superodom
+
+windows:
+    - window_name: roscore
+      focus: false
+      layout: main-horizontal
+      panes:
+          - shell_command:
+                - roscore
+
+    - window_name: super_odometry
+      focus: false
+      layout: main-horizontal
+      panes:
+          - shell_command:
+                - cd
+                - cd /home/shibo/laser_odometry/subt_state_estimation/src/subt_state_estimation
+                - source devel/setup.bash
+                - roslaunch super_odometry spot.launch 
+
+    - window_name: rviz
+      focus: false
+      layout: main-horizontal
+      panes:
+          - shell_command:
+                - cd
+                - cd /home/shibo/laser_odometry/superodometry_arl/src/
+                - sleep 2
+                - rviz -d arl.rviz
+    - window_name: rviz
+      focus: false
+      layout: main-horizontal
+      panes:
+          - shell_command:
+                - cd /home/shibo/laser_odometry/superodometry_arl/src/
+                - sleep 2
+                - rviz -d arl.rviz
+
+    - window_name: rosbag_play
+      focus: false
+      layout: main-horizontal
+      panes:
+          - shell_command:
+                - cd /media/shibo/Extreme SSD/perfect_spot_stair_data_TRO/multi_floor_perfect_dataset/run_1/bags
+                - sleep 6
+                - rosbag play *.bag --clock

@@ -1,0 +1,889 @@
+Panels:
+  - Class: rviz/Displays
+    Help Height: 190
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /Links1
+        - /Links1/Visual1
+        - /Links1/sensor1
+        - /Visual Feature1/FeatureTracking1
+        - /Visual Odometry1/Feature cloud1
+        - /Visual Odometry1/Path1
+        - /Lidar Odometry1
+        - /Lidar Odometry1/Path (local)1
+        - /Lidar Odometry1/Cloud (raw)1
+        - /Lidar Odometry1/Dense Map1
+        - /Lidar Odometry1/Observiblity Scan1
+        - /Uncertainty1/Uncertainty_X1
+        - /Uncertainty1/Uncertainty_Y1
+        - /Uncertainty1/Uncertainty_R1
+        - /Uncertainty1/Uncertainty_P1
+        - /Uncertainty1/Uncertainty_Y2
+        - /Uncertainty1/Uncertainty_VIO1
+        - /TF1/Tree1
+        - /String1
+        - /Odometry1
+        - /Grid2
+        - /RobotModel1
+      Splitter Ratio: 0.39469027519226074
+    Tree Height: 403
+  - Class: rviz/Selection
+    Name: Selection
+  - Class: rviz/Tool Properties
+    Expanded: ~
+    Name: Tool Properties
+    Splitter Ratio: 0.5886790156364441
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz/Time
+    Experimental: false
+    Name: Time
+    SyncMode: 0
+    SyncSource: Cloud (raw)
+Preferences:
+  PromptSaveOnExit: true
+Toolbars:
+  toolButtonStyle: 2
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz/Group
+      Displays:
+        - Alpha: 1
+          Class: rviz/Axes
+          Enabled: true
+          Length: 3
+          Name: Visual
+          Radius: 0.5
+          Reference Frame: sensor_init
+          Show Trail: false
+          Value: true
+        - Alpha: 1
+          Class: rviz/Axes
+          Enabled: true
+          Length: 1
+          Name: sensor
+          Radius: 0.30000001192092896
+          Reference Frame: sensor
+          Show Trail: false
+          Value: true
+      Enabled: true
+      Name: Links
+    - Class: rviz/Group
+      Displays:
+        - Alpha: 1
+          Autocompute Intensity Bounds: false
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: intensity
+          Class: rviz/PointCloud2
+          Color: 255; 255; 255
+          Color Transformer: Intensity
+          Decay Time: 0
+          Enabled: false
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Max Intensity: 0
+          Min Color: 255; 85; 255
+          Min Intensity: -1
+          Name: Feature cloud
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Size (Pixels): 1
+          Size (m): 1
+          Style: Points
+          Topic: /visual/lidar_map
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: false
+          Value: false
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: intensity
+          Class: rviz/PointCloud2
+          Color: 255; 255; 255
+          Color Transformer: Intensity
+          Decay Time: 0
+          Enabled: false
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Min Color: 0; 0; 0
+          Name: Depth cloud
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Size (Pixels): 3
+          Size (m): 0.10000000149011612
+          Style: Points
+          Topic: /lvi_sam/vins/depth/depth_cloud
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: false
+        - Class: rviz/Image
+          Enabled: false
+          Image Topic: /vins_estimator/depth_image
+          Max Value: 1
+          Median window: 5
+          Min Value: 0
+          Name: Image Feature
+          Normalize Range: true
+          Queue Size: 2
+          Transport Hint: raw
+          Unreliable: false
+          Value: false
+        - Class: rviz/Image
+          Enabled: false
+          Image Topic: /vins_estimator/feature_img
+          Max Value: 1
+          Median window: 5
+          Min Value: 0
+          Name: Image Depth
+          Normalize Range: true
+          Queue Size: 2
+          Transport Hint: raw
+          Unreliable: false
+          Value: false
+        - Class: rviz/Image
+          Enabled: false
+          Image Topic: /cmu_rc1/vins_estimator/feature_img
+          Max Value: 1
+          Median window: 5
+          Min Value: 0
+          Name: Feature_tracking
+          Normalize Range: true
+          Queue Size: 2
+          Transport Hint: raw
+          Unreliable: false
+          Value: false
+        - Class: jsk_rviz_plugin/OverlayImage
+          Enabled: true
+          Name: Raw_Image
+          Topic: /camera_1/image_raw
+          Value: true
+          alpha: 1
+          height: 256
+          keep aspect ratio: true
+          left: -5
+          overwrite alpha value: false
+          top: 10
+          transport hint: raw
+          width: 400
+        - Class: jsk_rviz_plugin/OverlayImage
+          Enabled: true
+          Name: FeatureTracking
+          Topic: /vins_estimator/feature_img
+          Value: true
+          alpha: 1
+          height: 128
+          keep aspect ratio: true
+          left: 1481
+          overwrite alpha value: false
+          top: 10
+          transport hint: raw
+          width: 400
+      Enabled: true
+      Name: Visual Feature
+    - Class: rviz/Group
+      Displays:
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 16.52329444885254
+            Min Value: 0.6178178787231445
+            Value: false
+          Axis: Z
+          Channel Name: intensity
+          Class: rviz/PointCloud
+          Color: 239; 41; 41
+          Color Transformer: FlatColor
+          Decay Time: 0
+          Enabled: true
+          Invert Rainbow: false
+          Max Color: 239; 41; 41
+          Min Color: 255; 85; 255
+          Name: Feature cloud
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Size (Pixels): 8
+          Size (m): 0.20000000298023224
+          Style: Spheres
+          Topic: /vins_estimator/point_cloud
+          Unreliable: false
+          Use Fixed Frame: false
+          Use rainbow: false
+          Value: true
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 16.52329444885254
+            Min Value: 0.6178178787231445
+            Value: false
+          Axis: Z
+          Channel Name: intensity
+          Class: rviz/PointCloud
+          Color: 255; 255; 255
+          Color Transformer: AxisColor
+          Decay Time: 300
+          Enabled: false
+          Invert Rainbow: false
+          Max Color: 85; 255; 0
+          Min Color: 255; 85; 255
+          Name: History cloud
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Size (Pixels): 5
+          Size (m): 0.009999999776482582
+          Style: Points
+          Topic: /lvi_sam/vins/odometry/history_cloud
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: false
+          Value: false
+        - Alpha: 1
+          Buffer Length: 1
+          Class: rviz/Path
+          Color: 25; 255; 0
+          Enabled: false
+          Head Diameter: 0.30000001192092896
+          Head Length: 0.20000000298023224
+          Length: 0.30000001192092896
+          Line Style: Lines
+          Line Width: 0.029999999329447746
+          Name: Path
+          Offset:
+            X: 0
+            Y: 0
+            Z: 0
+          Pose Color: 255; 85; 255
+          Pose Style: None
+          Queue Size: 10
+          Radius: 0.029999999329447746
+          Shaft Diameter: 0.10000000149011612
+          Shaft Length: 0.10000000149011612
+          Topic: /vins_estimator/path
+          Unreliable: false
+          Value: false
+        - Class: rviz/MarkerArray
+          Enabled: true
+          Marker Topic: /vins_estimator/camera_pose_visual
+          Name: MarkerArray
+          Namespaces:
+            {}
+          Queue Size: 100
+          Value: true
+        - Angle Tolerance: 0.10000000149011612
+          Class: rviz/Odometry
+          Covariance:
+            Orientation:
+              Alpha: 0.5
+              Color: 255; 255; 127
+              Color Style: Unique
+              Frame: Local
+              Offset: 1
+              Scale: 1
+              Value: true
+            Position:
+              Alpha: 0.30000001192092896
+              Color: 204; 51; 204
+              Scale: 1
+              Value: true
+            Value: true
+          Enabled: false
+          Keep: 1
+          Name: Odometry
+          Position Tolerance: 0.10000000149011612
+          Queue Size: 10
+          Shape:
+            Alpha: 1
+            Axes Length: 3
+            Axes Radius: 0.10000000149011612
+            Color: 255; 25; 0
+            Head Length: 0.30000001192092896
+            Head Radius: 0.10000000149011612
+            Shaft Length: 3
+            Shaft Radius: 0.05000000074505806
+            Value: Axes
+          Topic: /vins_estimator/imu_propagate
+          Unreliable: false
+          Value: false
+        - Angle Tolerance: 0.10000000149011612
+          Class: rviz/Odometry
+          Covariance:
+            Orientation:
+              Alpha: 0.5
+              Color: 255; 255; 127
+              Color Style: Unique
+              Frame: Local
+              Offset: 1
+              Scale: 1
+              Value: true
+            Position:
+              Alpha: 0.30000001192092896
+              Color: 204; 51; 204
+              Scale: 1
+              Value: true
+            Value: true
+          Enabled: false
+          Keep: 1
+          Name: Odometry
+          Position Tolerance: 0.10000000149011612
+          Queue Size: 10
+          Shape:
+            Alpha: 1
+            Axes Length: 1
+            Axes Radius: 0.10000000149011612
+            Color: 255; 25; 0
+            Head Length: 0.30000001192092896
+            Head Radius: 0.10000000149011612
+            Shaft Length: 1
+            Shaft Radius: 0.05000000074505806
+            Value: Axes
+          Topic: /vins_estimator/lidar/odometry
+          Unreliable: false
+          Value: false
+      Enabled: true
+      Name: Visual Odometry
+    - Class: rviz/Group
+      Displays:
+        - Alpha: 1
+          Buffer Length: 1
+          Class: rviz/Path
+          Color: 85; 255; 255
+          Enabled: true
+          Head Diameter: 0.30000001192092896
+          Head Length: 0.20000000298023224
+          Length: 0.30000001192092896
+          Line Style: Billboards
+          Line Width: 0.10000000149011612
+          Name: Path (global)
+          Offset:
+            X: 0
+            Y: 0
+            Z: 0
+          Pose Color: 255; 85; 255
+          Pose Style: None
+          Queue Size: 10
+          Radius: 0.029999999329447746
+          Shaft Diameter: 0.10000000149011612
+          Shaft Length: 0.10000000149011612
+          Topic: /aft_mapped_path
+          Unreliable: false
+          Value: true
+        - Alpha: 1
+          Buffer Length: 1
+          Class: rviz/Path
+          Color: 255; 0; 127
+          Enabled: true
+          Head Diameter: 0.30000001192092896
+          Head Length: 0.20000000298023224
+          Length: 0.30000001192092896
+          Line Style: Billboards
+          Line Width: 0.10000000149011612
+          Name: Path (local)
+          Offset:
+            X: 0
+            Y: 0
+            Z: 0
+          Pose Color: 255; 85; 255
+          Pose Style: None
+          Queue Size: 10
+          Radius: 0.029999999329447746
+          Shaft Diameter: 0.10000000149011612
+          Shaft Length: 0.10000000149011612
+          Topic: /imuodom_path
+          Unreliable: false
+          Value: true
+        - Alpha: 1
+          Autocompute Intensity Bounds: false
+          Autocompute Value Bounds:
+            Max Value: 1.7851308584213257
+            Min Value: -2.998251438140869
+            Value: true
+          Axis: Z
+          Channel Name: z
+          Class: rviz/PointCloud2
+          Color: 255; 255; 255
+          Color Transformer: FlatColor
+          Decay Time: 0
+          Enabled: true
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Max Intensity: -0.800000011920929
+          Min Color: 0; 0; 0
+          Min Intensity: -0.8999999761581421
+          Name: Cloud (raw)
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Size (Pixels): 3
+          Size (m): 0.30000001192092896
+          Style: Points
+          Topic: /velodyne_cloud_registered_imu
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: true
+        - Alpha: 0.05000000074505806
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 4.807018280029297
+            Min Value: 2.1056694984436035
+            Value: true
+          Axis: Z
+          Channel Name: z
+          Class: rviz/PointCloud2
+          Color: 255; 255; 255
+          Color Transformer: Intensity
+          Decay Time: 500
+          Enabled: true
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Min Color: 0; 0; 0
+          Name: Dense Map
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Size (Pixels): 1
+          Size (m): 0.029999999329447746
+          Style: Points
+          Topic: velodyne_cloud_registered_imu
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: true
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: intensity
+          Class: rviz/PointCloud2
+          Color: 255; 255; 255
+          Color Transformer: RGB8
+          Decay Time: 0
+          Enabled: true
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Min Color: 0; 0; 0
+          Name: Observiblity Scan
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Size (Pixels): 3
+          Size (m): 0.10000000149011612
+          Style: Spheres
+          Topic: /superodom/observibility_from_scan
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: true
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 24.469348907470703
+            Min Value: -2.4048190116882324
+            Value: true
+          Axis: Z
+          Channel Name: intensity
+          Class: rviz/PointCloud2
+          Color: 255; 170; 255
+          Color Transformer: FlatColor
+          Decay Time: 0
+          Enabled: false
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Min Color: 0; 0; 0
+          Name: Local Map
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Size (Pixels): 2
+          Size (m): 0.009999999776482582
+          Style: Points
+          Topic: /lvi_sam/lidar/mapping/map_local
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: false
+      Enabled: true
+      Name: Lidar Odometry
+    - Class: rviz/Group
+      Displays:
+        - Buffer length: 100
+          Class: jsk_rviz_plugin/Plotter2D
+          Enabled: true
+          Name: Uncertainty_X
+          Show Value: true
+          Topic: uncertainty_X
+          Value: true
+          auto color change: false
+          auto scale: true
+          background color: 0; 0; 0
+          backround alpha: 0
+          border: true
+          foreground alpha: 0.699999988079071
+          foreground color: 25; 255; 240
+          height: 128
+          left: 550
+          linewidth: 1
+          max color: 255; 0; 0
+          max value: 1
+          min value: -1
+          show caption: true
+          text size: 12
+          top: 62
+          update interval: 0.03999999910593033
+          width: 128
+        - Buffer length: 100
+          Class: jsk_rviz_plugin/Plotter2D
+          Enabled: true
+          Name: Uncertainty_Z
+          Show Value: true
+          Topic: uncertainty_Z
+          Value: true
+          auto color change: false
+          auto scale: true
+          background color: 0; 0; 0
+          backround alpha: 0
+          border: true
+          foreground alpha: 0.699999988079071
+          foreground color: 25; 255; 240
+          height: 128
+          left: 820
+          linewidth: 1
+          max color: 255; 0; 0
+          max value: 1
+          min value: -1
+          show caption: true
+          text size: 12
+          top: 61
+          update interval: 0.03999999910593033
+          width: 128
+        - Buffer length: 100
+          Class: jsk_rviz_plugin/Plotter2D
+          Enabled: true
+          Name: Uncertainty_Y
+          Show Value: true
+          Topic: uncertainty_Y
+          Value: true
+          auto color change: false
+          auto scale: true
+          background color: 0; 0; 0
+          backround alpha: 0
+          border: true
+          foreground alpha: 0.699999988079071
+          foreground color: 25; 255; 240
+          height: 128
+          left: 686
+          linewidth: 1
+          max color: 255; 0; 0
+          max value: 1
+          min value: -1
+          show caption: true
+          text size: 12
+          top: 61
+          update interval: 0.03999999910593033
+          width: 128
+        - Buffer length: 100
+          Class: jsk_rviz_plugin/Plotter2D
+          Enabled: true
+          Name: Uncertainty_R
+          Show Value: true
+          Topic: uncertainty_roll
+          Value: true
+          auto color change: false
+          auto scale: true
+          background color: 0; 0; 0
+          backround alpha: 0
+          border: true
+          foreground alpha: 0.699999988079071
+          foreground color: 25; 255; 240
+          height: 128
+          left: 956
+          linewidth: 1
+          max color: 255; 0; 0
+          max value: 1
+          min value: -1
+          show caption: true
+          text size: 12
+          top: 61
+          update interval: 0.03999999910593033
+          width: 128
+        - Buffer length: 100
+          Class: jsk_rviz_plugin/Plotter2D
+          Enabled: true
+          Name: Uncertainty_P
+          Show Value: true
+          Topic: uncertainty_pitch
+          Value: true
+          auto color change: false
+          auto scale: true
+          background color: 0; 0; 0
+          backround alpha: 0
+          border: true
+          foreground alpha: 0.699999988079071
+          foreground color: 25; 255; 240
+          height: 128
+          left: 1092
+          linewidth: 1
+          max color: 255; 0; 0
+          max value: 1
+          min value: -1
+          show caption: true
+          text size: 12
+          top: 60
+          update interval: 0.03999999910593033
+          width: 128
+        - Buffer length: 100
+          Class: jsk_rviz_plugin/Plotter2D
+          Enabled: true
+          Name: Uncertainty_Y
+          Show Value: true
+          Topic: uncertainty_yaw
+          Value: true
+          auto color change: false
+          auto scale: true
+          background color: 0; 0; 0
+          backround alpha: 0
+          border: true
+          foreground alpha: 0.699999988079071
+          foreground color: 25; 255; 240
+          height: 128
+          left: 1231
+          linewidth: 1
+          max color: 255; 0; 0
+          max value: 1
+          min value: -1
+          show caption: true
+          text size: 12
+          top: 59
+          update interval: 0.03999999910593033
+          width: 128
+        - Buffer length: 100
+          Class: jsk_rviz_plugin/Plotter2D
+          Enabled: true
+          Name: Uncertainty_VIO
+          Show Value: true
+          Topic: /vins_estimator/feature_chi2_outlier_ratio
+          Value: true
+          auto color change: false
+          auto scale: true
+          background color: 0; 0; 0
+          backround alpha: 0
+          border: true
+          foreground alpha: 0.699999988079071
+          foreground color: 25; 255; 240
+          height: 128
+          left: 1117
+          linewidth: 1
+          max color: 255; 0; 0
+          max value: 1
+          min value: -1
+          show caption: true
+          text size: 12
+          top: 513
+          update interval: 0.03999999910593033
+          width: 128
+      Enabled: true
+      Name: Uncertainty
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: false
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 100
+      Reference Frame: <Fixed Frame>
+      Value: false
+    - Class: rviz/TF
+      Enabled: false
+      Frame Timeout: 2000
+      Frames:
+        All Enabled: false
+      Marker Alpha: 1
+      Marker Scale: 5
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        {}
+      Update Interval: 0
+      Value: false
+    - Align Bottom: false
+      Background Alpha: 0.800000011920929
+      Background Color: 0; 0; 0
+      Class: jsk_rviz_plugin/String
+      Enabled: true
+      Foreground Alpha: 0.800000011920929
+      Foreground Color: 25; 255; 240
+      Name: String
+      Overtake Color Properties: false
+      Overtake Position Properties: true
+      Topic: prediction_source
+      Value: true
+      font: DejaVu Sans Mono
+      height: 30
+      left: 800
+      line width: 2
+      text size: 15
+      top: 20
+      width: 500
+    - Angle Tolerance: 0.10000000149011612
+      Class: rviz/Odometry
+      Covariance:
+        Orientation:
+          Alpha: 0.5
+          Color: 255; 255; 127
+          Color Style: Unique
+          Frame: Local
+          Offset: 1
+          Scale: 1
+          Value: true
+        Position:
+          Alpha: 0.30000001192092896
+          Color: 204; 51; 204
+          Scale: 1
+          Value: true
+        Value: true
+      Enabled: true
+      Keep: 100
+      Name: Odometry
+      Position Tolerance: 0.10000000149011612
+      Queue Size: 10
+      Shape:
+        Alpha: 1
+        Axes Length: 1
+        Axes Radius: 0.10000000149011612
+        Color: 255; 25; 0
+        Head Length: 0.30000001192092896
+        Head Radius: 0.10000000149011612
+        Shaft Length: 1
+        Shaft Radius: 0.05000000074505806
+        Value: Axes
+      Topic: /superodom/aft_mapped_to_init_imu
+      Unreliable: false
+      Value: true
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: false
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 100
+      Reference Frame: <Fixed Frame>
+      Value: false
+    - Alpha: 1
+      Class: rviz/RobotModel
+      Collision Enabled: false
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+      Name: RobotModel
+      Robot Description: robot_description
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+  Enabled: true
+  Global Options:
+    Background Color: 0; 0; 0
+    Default Light: true
+    Fixed Frame: sensor_init
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+    - Class: rviz/FocusCamera
+    - Class: jsk_rviz_plugin/OverlayPicker
+    - Class: rviz/Select
+  Value: true
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 16.4696102142334
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Field of View: 0.7853981852531433
+      Focal Point:
+        X: 0.41534560918807983
+        Y: 0.8809713125228882
+        Z: -0.19064511358737946
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05000000074505806
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 1.0697968006134033
+      Target Frame: sensor
+      Yaw: 1.8096272945404053
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Feature_tracking:
+    collapsed: false
+  Height: 842
+  Hide Left Dock: false
+  Hide Right Dock: true
+  Image Depth:
+    collapsed: false
+  Image Feature:
+    collapsed: false
+  QMainWindow State: 000000ff00000000fd0000000400000000000001b3000002f0fc020000000afb0000001200530065006c0065006300740069006f006e010000003d0000005c0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000009f0000028e000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb00000014004c006f006f007000200069006d00610067006500000004790000010a0000000000000000fb0000000a0049006d00610067006500000000ca0000031a00000000000000000000000100000111000005a6fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003d000005a6000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000780000000d6fc0100000004fb000000160049006d0061006700650020004400650070007400680000000000000007800000008c00fffffffb000000200046006500610074007500720065005f0074007200610063006b0069006e006700000002420000024e000000a800fffffffb0000001a0049006d0061006700650020004600650061007400750072006500000003450000043b0000009700fffffffb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004b000000040fc0100000002fb0000000800540069006d00650000000000000004b0000004f300fffffffb0000000800540069006d00650100000000000004500000000000000000000003b7000002f000000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Selection:
+    collapsed: false
+  Time:
+    collapsed: false
+  Tool Properties:
+    collapsed: false
+  Views:
+    collapsed: true
+  Width: 1392
+  X: 305
+  Y: 117
